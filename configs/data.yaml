@@ -1,0 +1,16 @@
+# LiverFusion AI - Dataset & Split Configuration
+seed: 42
+data_root_env_var: "DATA_ROOT"
+default_data_root: "Dataset"
+
+split_ratios:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+
+# Confidence threshold for low confidence notice (unassigned by default; user sets after validation)
+confidence_threshold: null
+
+# Rule 4: Group-aware split over duplicate frames; patient independence is not guaranteed without IDs
+patient_independence_guaranteed: false
+patient_independence_statement: "Dataset does not provide patient identifiers; splitting is strictly performed over duplicate-frame hash groups. Patient-independence is not guaranteed."

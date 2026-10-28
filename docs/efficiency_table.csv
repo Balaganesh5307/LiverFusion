@@ -1,0 +1,5 @@
+model_architecture,parameters_total,parameters_millions,inference_latency_ms_per_sample,accuracy,macro_f1
+ResNet-50,23571450,23.57M,55.66,0.5074,0.4185
+ViT-B/16,86571501,86.57M,0.00,0.5614,0.4429
+Dual-Branch Fusion,110997996,111.00M,0.01,0.4399,0.4303
+Gated Fusion (Ablation),111260652,111.26M,0.02,0.502,0.4883

@@ -1,0 +1,26 @@
+# LiverFusion AI - Dataset Configuration
+# Rule 6: Same split, seed, preprocessing, and tuning budget for all models.
+# Rule 4: Split by duplicate-group; state that patient-independence is not guaranteed if no IDs exist.
+
+seed: 42
+data_root_env_var: "DATA_ROOT"
+default_data_root: "Dataset"
+
+split_ratios:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+
+# Medical ultrasound grayscale preprocessing
+image_processing:
+  input_resolution: [224, 224]
+  channels: 1
+  mean: [0.5]
+  std: [0.5]
+
+duplicate_grouping:
+  enabled: true
+  method: "dhash_md5"
+  # Rule 4 compliance statement:
+  patient_independence_guaranteed: false
+  patient_independence_note: "Dataset does not provide patient identifiers; splitting is performed over duplicate-frame hash groups. Patient-independence is not guaranteed."

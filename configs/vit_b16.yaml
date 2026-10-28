@@ -1,0 +1,25 @@
+# LiverFusion AI - ViT-B/16 Configuration
+# ImageNet-pretrained Vision Transformer branch
+
+model:
+  name: "vit_b16"
+  architecture: "ViT_B_16"
+  pretrained: true
+  in_channels: 1
+  patch_size: 16
+  image_size: 224
+  num_classes: 5  # Discovered dynamically at runtime from dataset directory
+
+training:
+  seed: 42
+  batch_size: 16
+  epochs: 8
+  learning_rate: 0.00005
+  weight_decay: 0.0001
+  loss_function: "weighted_cross_entropy"
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  gradient_clip: 1.0
+
+explainability:
+  method: "attention_rollout_cam"

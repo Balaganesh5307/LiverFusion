@@ -1,0 +1,35 @@
+# LiverFusion AI - Dual Branch Fusion Configuration
+# ResNet50 (conv) + ViT-B/16 (transformer) with projection + LayerNorm per branch, concatenation, MLP head
+# Gated fusion available as ablation
+
+model:
+  name: "fusion"
+  architecture: "DualBranchFusion"
+  resnet_backbone: "resnet50"
+  vit_backbone: "vit_b_16"
+  pretrained_backbones: true
+  in_channels: 1
+  num_classes: 5
+  
+  fusion_architecture:
+    resnet_proj_dim: 256
+    vit_proj_dim: 256
+    use_layernorm: true
+    mlp_hidden_dim: 256
+    dropout: 0.2
+    # Ablation study parameter:
+    gated_fusion: false  # When true, employs learnable sigmoid gating ablation
+
+training:
+  seed: 42
+  batch_size: 16
+  epochs: 8
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  loss_function: "weighted_cross_entropy"
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  gradient_clip: 1.0
+
+explainability:
+  method: "dual_saliency_cam"

@@ -1,0 +1,24 @@
+# LiverFusion AI - ResNet50 Configuration
+# ImageNet-pretrained convolutional branch adapted for ultrasound
+
+model:
+  name: "resnet50"
+  architecture: "ResNet50"
+  pretrained: true
+  in_channels: 1
+  num_classes: 5  # Discovered dynamically at runtime from dataset directory
+
+training:
+  seed: 42
+  batch_size: 16
+  epochs: 8
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  loss_function: "weighted_cross_entropy"
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  gradient_clip: 1.0
+
+explainability:
+  method: "gradcam"
+  target_layer: "layer4"
